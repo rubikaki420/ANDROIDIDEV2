@@ -34,7 +34,7 @@ description = "AndroidIDE Logging Framework"
 
 dependencies {
     compileOnly(projects.utilities.frameworkStubs)
-
+ 	api(files("libs/logback-core-1.5.3.jar"))
     api(libs.logging.logback.core)
     api(libs.logging.logback.classic) {
         // logback classic depends on upstream logback-core
