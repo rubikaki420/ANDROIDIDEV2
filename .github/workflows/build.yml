@@ -2,7 +2,7 @@ name: Build and test
 
 on:
   push:
-    branches: [ "dev", "main", "indexing", "release/**" ]
+    branches: ["main"]
     paths-ignore:
       - '**.md'
       - 'fastlane/**'
@@ -49,10 +49,10 @@ jobs:
     name: Build APK
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ github.token }}
+      #- name: Cancel previous runs
+       # uses: styfle/cancel-workflow-action@0.12.1
+      #  with:
+        # access_token: ${{ github.token }}
       - name: Checkout
         uses: actions/checkout@v4
         with:
