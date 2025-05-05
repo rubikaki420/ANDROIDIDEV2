@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Assemble Release APK
-        run: ./gradlew :core:app:assembleRelease --stacktrace --info
+        run: ./gradlew :core:app:assembleRelease
 
       - name: Copy APKs
         run: |
