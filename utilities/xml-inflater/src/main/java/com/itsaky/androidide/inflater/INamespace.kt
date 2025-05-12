@@ -35,7 +35,8 @@ interface INamespace {
   val uri: String
 
   companion object {
-    /** The Android namespace. */
-    @JvmField val ANDROID: INamespace = NamespaceImpl(ANDROID_NS_NAME, ANDROID_URI)
+    @JvmField val ANDROID: INamespace = NamespaceImpl("android", ANDROID_URI)
+    @JvmField val AUTO: INamespace = NamespaceImpl("app", "http://schemas.android.com/apk/res-auto")
+    @JvmField val TOOLS: INamespace = NamespaceImpl("tools", "http://schemas.android.com/tools")
   }
 }
