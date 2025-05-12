@@ -24,6 +24,7 @@ import android.view.ViewGroup.LayoutParams
 import com.itsaky.androidide.inflater.InflateException
 import com.itsaky.androidide.inflater.internal.ViewAdapterIndexImpl
 import org.slf4j.LoggerFactory
+import android.util.AttributeSet
 import java.lang.reflect.Method
 
 /** @author Akash Yadav */
@@ -31,26 +32,31 @@ object ViewFactory {
 
   private val log = LoggerFactory.getLogger(ViewFactory::class.java)
 
-  fun createViewInstance(name: String, context: Context): View {
+fun createViewInstance(name: String, context: Context): View {
     val adapter = ViewAdapterIndexImpl.INSTANCE.getViewAdapter(name)
     return try {
-      if (adapter != null) {
-        // Check if adapter can create the view instance
-        val view = adapter.onCreateView(name, context)
-        if (view != null) {
-          return view
+        if (adapter != null) {
+            // Check if adapter can create the view instance
+            val view = adapter.onCreateView(name, context)
+            if (view != null) {
+                return view
+            }
         }
-      }
-
-      val klass = javaClass.classLoader!!.loadClass(name)
-      val constructor = klass.getConstructor(Context::class.java)
-      constructor.newInstance(context) as View
+        try {
+            val klass = javaClass.classLoader!!.loadClass(name)
+            val constructor = klass.getConstructor(Context::class.java, AttributeSet::class.java)
+            constructor.newInstance(context, null) as View
+        } catch (e: NoSuchMethodException) {
+            // যদি NoSuchMethodException আসে, context দিয়ে কল করো
+            val klass = javaClass.classLoader!!.loadClass(name)
+            val constructor = klass.getConstructor(Context::class.java)
+            constructor.newInstance(context) as View
+        }
     } catch (err: Throwable) {
-      log.error("Failed to create view instance for view: {}", name, err)
-      throw RuntimeException(err)
+        log.error("Failed to create view instance for view: {}", name, err)
+        throw RuntimeException(err)
     }
-  }
-
+}
   fun generateLayoutParams(parent: ViewGroup): LayoutParams {
     return try {
       var clazz: Class<in ViewGroup> = parent.javaClass
