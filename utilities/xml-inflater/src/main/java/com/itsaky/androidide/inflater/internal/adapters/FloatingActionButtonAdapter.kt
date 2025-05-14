@@ -16,14 +16,7 @@ open class FloatingActionButtonAdapter<T : FloatingActionButton> : ViewAdapter<T
   override fun createAttrHandlers(create: (String, AttributeHandlerScope<T>.() -> Unit) -> Unit) {
     super.createAttrHandlers(create)
 
-    create("fabSize") {
-      view.size = when (value) {
-        "normal" -> FloatingActionButton.SIZE_NORMAL
-        "mini" -> FloatingActionButton.SIZE_MINI
-        else -> FloatingActionButton.SIZE_AUTO
-      }
-    }
-
+    
     create("fabCustomSize") {
   view.customSize = parseDimension(context, value, 0).toInt()
 }
