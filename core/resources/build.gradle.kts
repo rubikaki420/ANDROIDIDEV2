@@ -22,7 +22,6 @@ plugins {
 }
 
 
-
 android {
   namespace = "${BuildConfig.packageName}.resources"
 }
