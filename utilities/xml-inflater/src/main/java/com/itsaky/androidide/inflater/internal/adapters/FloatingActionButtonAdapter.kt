@@ -39,10 +39,6 @@ create("rippleColor") {
       view.setImageDrawable(parseDrawable(context, value))
     }
 
-    create("maxImageSize") {
-  view.maxImageSize = parseDimension(context, value, 0).toInt()
-}
-
     create("elevation") {
       view.elevation = parseDimension(context, value, 0).toFloat()
     }
@@ -69,7 +65,7 @@ create("rippleColor") {
       UiWidget(
         FloatingActionButton::class.java,
         R.string.widget_fab,
-        R.drawable.ic_widget_button // এটা drawable ফাইলে যুক্ত করে নিতে হবে
+        R.drawable.ic_widget_button
       )
     )
   }
