@@ -158,7 +158,7 @@ abstract class IViewAdapter<T : View> : AbstractParser() {
   }
 
   override fun canHandleNamespace(nsUri: String?): Boolean {
-    return nsUri == SdkConstants.ANDROID_URI || nsUri == SdkConstants.AUTO URI
+    return nsUri == SdkConstants.ANDROID_URI || nsUri == SdkConstants.AUTO_URI
 }
   protected open fun AttributeHandlerScope<T>.applyInternal(): Boolean {
     val handler = attributeHandlers[name]
