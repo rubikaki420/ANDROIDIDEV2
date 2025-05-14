@@ -153,11 +153,11 @@ abstract class IViewAdapter<T : View> : AbstractParser() {
   }
 
   protected open fun canHandleNamespace(namespace: INamespace?): Boolean {
-    return this.canHandleNamespace(namespace?.uri)
+    return this.canHandleNamespace(namespace?.uri) 
   }
 
   protected open fun canHandleNamespace(nsUri: String?): Boolean {
-    return SdkConstants.ANDROID_URI == nsUri
+    return SdkConstants.ANDROID_URI == nsUri || nsUri == "http://schemas.android.com/apk/res-auto"
   }
 
   protected open fun AttributeHandlerScope<T>.applyInternal(): Boolean {
