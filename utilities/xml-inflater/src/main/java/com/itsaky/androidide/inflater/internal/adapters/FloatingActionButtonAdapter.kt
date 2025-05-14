@@ -27,9 +27,6 @@ open class FloatingActionButtonAdapter<T : FloatingActionButton> : ViewAdapter<T
     create("fabCustomSize") {
   view.customSize = parseDimension(context, value, 0).toInt()
 }
-create("rippleColor") {
-  view.rippleColor = parseColorStateList(context, value)
-}
 
 
     create("backgroundTint") {
@@ -44,13 +41,6 @@ create("rippleColor") {
       view.elevation = parseDimension(context, value, 0).toFloat()
     }
 
-    create("pressedTranslationZ") {
-      view.pressedTranslationZ = parseDimension(context, value, 0).toFloat()
-    }
-
-    create("hoveredFocusedTranslationZ") {
-      view.hoveredFocusedTranslationZ = parseDimension(context, value, 0).toFloat()
-    }
 
     create("useCompatPadding") {
       view.useCompatPadding = parseBoolean(value)
