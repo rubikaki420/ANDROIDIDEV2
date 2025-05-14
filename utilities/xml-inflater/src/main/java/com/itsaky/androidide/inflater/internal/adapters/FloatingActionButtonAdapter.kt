@@ -10,7 +10,6 @@ import com.itsaky.androidide.resources.R
 import com.itsaky.androidide.inflater.internal.utils.*
 
 
-
 @ViewAdapter(FloatingActionButton::class)
 @IncludeInDesigner(group = WIDGETS)
 open class FloatingActionButtonAdapter<T : FloatingActionButton> : ViewAdapter<T>() {
