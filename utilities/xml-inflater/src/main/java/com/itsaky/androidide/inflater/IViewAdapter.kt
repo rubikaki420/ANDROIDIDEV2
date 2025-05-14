@@ -1,4 +1,3 @@
-
 /*
  *  This file is part of AndroidIDE.
  *
@@ -157,9 +156,10 @@ abstract class IViewAdapter<T : View> : AbstractParser() {
     return this.canHandleNamespace(namespace?.uri)
   }
 
-  override fun canHandleNamespace(nsUri: String?): Boolean {
-    return nsUri == SdkConstants.ANDROID_URI || nsUri == SdkConstants.AUTO_URI
-}
+  protected open fun canHandleNamespace(nsUri: String?): Boolean {
+    return SdkConstants.ANDROID_URI == nsUri
+  }
+
   protected open fun AttributeHandlerScope<T>.applyInternal(): Boolean {
     val handler = attributeHandlers[name]
     if (handler != null) {
