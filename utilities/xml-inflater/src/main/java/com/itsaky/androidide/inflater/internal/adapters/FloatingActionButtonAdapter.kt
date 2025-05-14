@@ -1,7 +1,6 @@
 package com.itsaky.androidide.inflater.internal.adapters
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.itsaky.androidide.annotations.inflater.ViewAdapter
 import com.itsaky.androidide.annotations.uidesigner.IncludeInDesigner
 import com.itsaky.androidide.annotations.uidesigner.IncludeInDesigner.Group.WIDGETS
 import com.itsaky.androidide.inflater.AttributeHandlerScope
@@ -10,7 +9,7 @@ import com.itsaky.androidide.resources.R
 import com.itsaky.androidide.inflater.internal.utils.*
 
 
-@ViewAdapter(FloatingActionButton::class)
+@com.itsaky.androidide.annotations.inflater.ViewAdapter(FloatingActionButton::class)
 @IncludeInDesigner(group = WIDGETS)
 open class FloatingActionButtonAdapter<T : FloatingActionButton> : ViewAdapter<T>() {
 
