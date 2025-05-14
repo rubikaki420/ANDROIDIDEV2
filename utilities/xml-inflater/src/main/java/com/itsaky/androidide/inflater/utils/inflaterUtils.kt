@@ -64,15 +64,21 @@ fun newAttribute(
 @JvmOverloads
 fun newAttribute(
   view: IView? = null,
-  namespace: INamespace? = INamespace.ANDROID,
+  namespace: INamespace? = null,
   name: String,
   value: String
 ): IAttribute {
+  val ns = namespace ?: when {
+    name.startsWith("android:") -> INamespace.ANDROID
+    name.startsWith("app:") -> NamespaceImpl("app", "http://schemas.android.com/apk/res-auto")
+    else -> INamespace.ANDROID // fallback
+  }
+
   val componentFactory = lookupComponentFactory()
   if (componentFactory != null && view != null) {
-    return componentFactory.createAttr(view, namespace, name, value)
+    return componentFactory.createAttr(view, ns, name, value)
   }
-  return AttributeImpl(namespace, name, value)
+  return AttributeImpl(ns, name, value)
 }
 
 /**
